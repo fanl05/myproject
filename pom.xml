@@ -12,6 +12,7 @@
         <module>test-everything</module>
         <module>mybatis-mapper</module>
         <module>vavr-learning</module>
+        <module>guava-learning</module>
     </modules>
 
     <properties>
