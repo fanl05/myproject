@@ -11,6 +11,7 @@
     <modules>
         <module>test-everything</module>
         <module>mybatis-mapper</module>
+        <module>vavr-learning</module>
     </modules>
 
     <properties>
