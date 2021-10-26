@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vip.mybatis.mapper.StudentMapper">
+    <select id="queryAll" resultType="com.vip.mybatis.entity.Student">
+        select *
+        from student;
+    </select>
+
+    <insert id="insertOnDuplicateKeyUpdate" parameterType="com.vip.mybatis.entity.Student">
+        insert into student (name, age, major, hometown) values
+        <foreach collection="students" index="index" item="student" open="" close="">
+            (#{student.name}, #{student.age}, #{student.major}, #{student.hometown})
+        </foreach>
+        on duplicate key update set name=value(name)
+    </insert>
+</mapper>

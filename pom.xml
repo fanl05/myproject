@@ -10,11 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>test-everything</module>
-        <module>mybatis-learning</module>
         <module>vavr-learning</module>
         <module>guava-learning</module>
         <module>juc-learning</module>
         <module>jdk8-learning</module>
+        <module>mybatis-learning</module>
     </modules>
 
     <properties>
