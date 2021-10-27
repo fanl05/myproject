@@ -14,7 +14,6 @@
         <module>guava-learning</module>
         <module>juc-learning</module>
         <module>jdk8-learning</module>
-        <module>mapstruct-learning</module>
         <module>mybatis-learning</module>
     </modules>
 

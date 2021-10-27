@@ -3,9 +3,8 @@ package com.vip.mybatis;
 import com.vip.mybatis.entity.Student;
 import com.vip.mybatis.mapper.StudentMapper;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.session.*;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -37,12 +36,28 @@ public class Test01 {
     @Test
     public void test03() throws IOException {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE, true);
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        Student student = new Student("test", 1, "test", "test2");
+        int count = mapper.insertByEntity(new Student("user2", 20, "cs", "cn"));
+        System.out.println(count);
+        sqlSession.close();
+
+    }
+
+    @Test
+    public void test04() throws IOException {
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE, true);
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+
+        Student student = new Student("test", 1, "test", "test1");
         List<Student> students = new ArrayList<>();
+        students.add(student);
+
         int count = mapper.insertOnDuplicateKeyUpdate(students);
         System.out.println(count);
+        sqlSession.close();
     }
 
 }

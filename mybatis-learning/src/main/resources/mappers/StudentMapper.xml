@@ -5,15 +5,20 @@
 
 <mapper namespace="com.vip.mybatis.mapper.StudentMapper">
     <select id="queryAll" resultType="com.vip.mybatis.entity.Student">
-        select *
+        select name, age, major, hometown
         from student;
     </select>
 
+    <insert id="insertByEntity" parameterType="com.vip.mybatis.entity.Student">
+        insert into student (name, age, major, hometown)
+        values (#{student.name}, #{student.age}, #{student.major}, #{student.hometown})
+    </insert>
+
     <insert id="insertOnDuplicateKeyUpdate" parameterType="com.vip.mybatis.entity.Student">
         insert into student (name, age, major, hometown) values
-        <foreach collection="students" index="index" item="student" open="" close="">
+        <foreach collection="students" index="index" item="student" open="" separator="," close="">
             (#{student.name}, #{student.age}, #{student.major}, #{student.hometown})
         </foreach>
-        on duplicate key update set name=value(name)
+        on duplicate key update major = values(major), hometown = values(hometown)
     </insert>
 </mapper>
