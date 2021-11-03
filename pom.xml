@@ -15,6 +15,8 @@
         <module>juc-learning</module>
         <module>jdk8-learning</module>
         <module>mybatis-learning</module>
+        <module>tk-mapper-learning</module>
+        <module>tkmapper-learning</module>
     </modules>
 
     <properties>
